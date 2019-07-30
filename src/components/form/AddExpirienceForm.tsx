@@ -3,6 +3,7 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { ResumeData, WorkExpreience } from "../../interfaces";
 import Button from "@material-ui/core/Button";
+import ImageInput from "./ImageInput";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -37,6 +38,7 @@ export default function OutlinedTextFields(props: any) {
   return (
     <React.Fragment>
       <div>
+        <ImageInput />
         <TextField
           label="Position"
           className={classes.textField}

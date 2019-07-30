@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import { ResumeData } from "../../interfaces";
 import Button from "@material-ui/core/Button";
 import AddExperienceFrorm from "./AddExpirienceForm";
+import ImageInput from "./ImageInput";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,17 +31,20 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function OutlinedTextFields(props: {
   formData: ResumeData;
   handleChange: (e: any) => any;
+  handleImageChange: (value: string) => any;
 }) {
   const classes = useStyles();
 
   const {
     formData: { fullName, jobTitle, email, adress },
-    handleChange
+    handleChange,
+    handleImageChange
   } = props;
   const [showAddExpirience, setShowAddExperience] = useState<boolean>(false);
 
   return (
     <form className={classes.container} noValidate autoComplete="off">
+      <h4>Complete your data and export your resume</h4>
       <div>
         <TextField
           label="Full Name"
@@ -50,6 +54,7 @@ export default function OutlinedTextFields(props: {
           margin="normal"
           variant="outlined"
         />
+        <ImageInput handleImageChange={handleImageChange} />
         <TextField
           label="Job Title"
           className={classes.textField}

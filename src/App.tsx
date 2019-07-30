@@ -17,14 +17,41 @@ const ExperienceContainer = styled.div`
   padding: 1.5em;
 `;
 
+const ResumePicture = styled.div`
+  background-image: url(${(props: { picture: any }) => props.picture});
+  height: 250px;
+  width: 100%;
+  background-color: red;
+  background-position: center;
+`;
+
 const App: React.FC = () => {
   const [formData, setFormData] = useState<ResumeData>({
     fullName: "",
     jobTitle: "",
     email: "",
     adress: "",
-    workExpreiences: []
+    workExpreiences: [],
+    picture: {}
   });
+  const handleImageChange = (e: any): any => {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+      setFormData({
+        ...formData,
+        picture: {
+          file,
+          imagePreviewUrl: reader.result
+        }
+      });
+    };
+
+    reader.readAsDataURL(file);
+  };
 
   const handleChange = (name: keyof ResumeData) => (
     event: React.ChangeEvent<HTMLInputElement>
@@ -36,6 +63,7 @@ const App: React.FC = () => {
     <div className="App">
       <Sheet bgColor="#ccc">
         <SideBar bgColor="#16151c" width={35} color="white">
+          <ResumePicture picture={formData.picture.imagePreviewUrl} />
           <h4>{formData.email}</h4>
           <SkillsSlider skill="Eat mandarines" percent={100} />
         </SideBar>
@@ -52,7 +80,11 @@ const App: React.FC = () => {
           )}
         </ExperienceContainer>
       </Sheet>
-      <Form formData={formData} handleChange={handleChange} />
+      <Form
+        formData={formData}
+        handleChange={handleChange}
+        handleImageChange={handleImageChange}
+      />
     </div>
   );
 };
