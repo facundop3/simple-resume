@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import { ResumeData } from "../../context/interfaces";
+import { ResumeData } from "../../interfaces";
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme: Theme) =>

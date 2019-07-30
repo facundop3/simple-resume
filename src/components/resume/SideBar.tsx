@@ -6,6 +6,7 @@ const SideBar = styled.div`
   width: ${(props: SideBarPorps) => props.width}%;
   display: flex;
   background-color: ${(props: SideBarPorps) => props.bgColor};
+  color: ${(props: SideBarPorps) => props.color}
   padding: 1em;
   box-sizing: border-box;
 `;
