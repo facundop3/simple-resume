@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import { ResumeData } from "../../interfaces";
+import { ResumeData, WorkExpreience } from "../../interfaces";
 import Button from "@material-ui/core/Button";
-import AddExperienceFrorm from "./AddExpirienceForm";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,69 +26,66 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function OutlinedTextFields(props: {
-  formData: ResumeData;
-  handleChange: (e: any) => any;
-}) {
+export default function OutlinedTextFields(props: any) {
   const classes = useStyles();
-
-  const {
-    formData: { fullName, jobTitle, email, adress },
-    handleChange
-  } = props;
-  const [showAddExpirience, setShowAddExperience] = useState<boolean>(false);
-
+  const [experienceData, setExperienceData] = useState<WorkExpreience>({
+    position: "",
+    since: "",
+    to: "",
+    description: ""
+  });
   return (
-    <form className={classes.container} noValidate autoComplete="off">
+    <React.Fragment>
       <div>
         <TextField
-          label="Full Name"
+          label="Position"
           className={classes.textField}
-          value={fullName}
-          onChange={handleChange("fullName")}
+          //   value={experienceData.position}
+          //   onChange={handleChange("position")}
           margin="normal"
           variant="outlined"
         />
         <TextField
-          label="Job Title"
+          label="Since"
           className={classes.textField}
-          value={jobTitle}
-          onChange={handleChange("jobTitle")}
+          //   value={experienceData.since}
+          //   onChange={handleChange("since")}
           margin="normal"
           variant="outlined"
         />
         <TextField
-          id="outlined-email-input"
-          label="Email"
+          label="To"
           className={classes.textField}
-          value={email}
-          onChange={handleChange("email")}
-          type="email"
-          name="email"
-          autoComplete="email"
+          //   value={experienceData.to}
+          //   onChange={handleChange("to")}
           margin="normal"
           variant="outlined"
         />
         <TextField
-          label="Adress"
+          id="outlined-multiline-flexible"
+          label="Description"
+          multiline
+          rowsMax="4"
+          //   value={experienceData.description}
+          //   onChange={handleChange("description")}
           className={classes.textField}
-          value={adress}
-          onChange={handleChange("adress")}
           margin="normal"
+          helperText="Do important "
           variant="outlined"
         />
       </div>
-      {showAddExpirience && <AddExperienceFrorm />}
       <div>
+        <Button variant="contained" color="primary" className={classes.button}>
+          Add
+        </Button>
         <Button
           variant="contained"
-          color="primary"
+          color="secondary"
           className={classes.button}
-          onClick={() => setShowAddExperience(!showAddExpirience)}
         >
-          + Experience
+          Cancel
         </Button>
       </div>
-    </form>
+    </React.Fragment>
   );
 }

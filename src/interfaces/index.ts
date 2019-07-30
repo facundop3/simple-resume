@@ -4,7 +4,7 @@ export interface ResumeData {
   email: string;
   adress: string;
   skills?: Skill[];
-  workExpreiences: workExpreience[];
+  workExpreiences: WorkExpreience[];
 }
 
 interface Skill {
@@ -12,11 +12,11 @@ interface Skill {
   percent: number;
 }
 
-interface workExpreience {
-  jobTitle: string;
+export interface WorkExpreience {
+  position: string;
   since: string;
   to: string;
-  jobDescription: string;
+  description: string;
 }
 
 export interface Action {
