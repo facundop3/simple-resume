@@ -38,7 +38,6 @@ export default function OutlinedTextFields(props: any) {
   return (
     <React.Fragment>
       <div>
-        <ImageInput />
         <TextField
           label="Position"
           className={classes.textField}

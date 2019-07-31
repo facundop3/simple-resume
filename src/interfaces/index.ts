@@ -6,6 +6,7 @@ export interface ResumeData {
   skills?: Skill[];
   workExpreiences: WorkExpreience[];
   picture: any;
+  pictureSize: number;
 }
 
 interface Skill {

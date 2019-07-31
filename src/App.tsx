@@ -18,11 +18,14 @@ const ExperienceContainer = styled.div`
 `;
 
 const ResumePicture = styled.div`
-  background-image: url(${(props: { picture: any }) => props.picture});
+  background-image: url(${(props: { picture: any; pictureSize: number }) =>
+    props.picture});
   height: 250px;
   width: 100%;
   background-color: red;
   background-position: center;
+  background-size: ${(props: { picture: any; pictureSize: number }) =>
+    props.pictureSize}%;
 `;
 
 const App: React.FC = () => {
@@ -32,7 +35,8 @@ const App: React.FC = () => {
     email: "",
     adress: "",
     workExpreiences: [],
-    picture: {}
+    picture: {},
+    pictureSize: 100
   });
   const handleImageChange = (e: any): any => {
     e.preventDefault();
@@ -52,7 +56,10 @@ const App: React.FC = () => {
 
     reader.readAsDataURL(file);
   };
-
+  const handleImageSizeChange = (event: any, newValue: number) => {
+    console.log(newValue);
+    setFormData({ ...formData, pictureSize: newValue });
+  };
   const handleChange = (name: keyof ResumeData) => (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -63,7 +70,10 @@ const App: React.FC = () => {
     <div className="App">
       <Sheet bgColor="#ccc">
         <SideBar bgColor="#16151c" width={35} color="white">
-          <ResumePicture picture={formData.picture.imagePreviewUrl} />
+          <ResumePicture
+            picture={formData.picture.imagePreviewUrl}
+            pictureSize={formData.pictureSize}
+          />
           <h4>{formData.email}</h4>
           <SkillsSlider skill="Eat mandarines" percent={100} />
         </SideBar>
@@ -84,6 +94,7 @@ const App: React.FC = () => {
         formData={formData}
         handleChange={handleChange}
         handleImageChange={handleImageChange}
+        handleImageSizeChange={handleImageSizeChange}
       />
     </div>
   );

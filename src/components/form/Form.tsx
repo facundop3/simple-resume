@@ -32,6 +32,7 @@ export default function OutlinedTextFields(props: {
   formData: ResumeData;
   handleChange: (e: any) => any;
   handleImageChange: (value: string) => any;
+  handleImageSizeChange: any;
 }) {
   const classes = useStyles();
 
@@ -54,7 +55,11 @@ export default function OutlinedTextFields(props: {
           margin="normal"
           variant="outlined"
         />
-        <ImageInput handleImageChange={handleImageChange} />
+        <ImageInput
+          handleImageChange={handleImageChange}
+          setSize={props.handleImageSizeChange}
+          size={props.formData.pictureSize}
+        />
         <TextField
           label="Job Title"
           className={classes.textField}
